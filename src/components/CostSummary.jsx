@@ -2,12 +2,17 @@ import React from "react";
 import { GiNightSleep } from "react-icons/gi";
 import { WiDayCloudy } from "react-icons/wi";
 
-const CostSummary = ({ guests, guestCosts, totalCost, costPerDay }) => {
+const CostSummary = ({ guests, guestCosts, totalCost, costPerDay, baseGuests, extraCharges, totalWithExtras }) => {
   return (
     <div style={{ background: 'var(--color-background)', color: 'var(--color-text)', borderColor: 'var(--color-secondary)' }} className="p-6 rounded shadow border-2 max-w-3xl w-full mx-auto">
-      <h2 style={{ color: 'var(--color-text)' }} className="text-xl font-semibold mb-2">Cost Summary</h2>
-      <div style={{ color: 'var(--color-primary)' }} className="mb-4">
-        Cost per day: {costPerDay.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+      <h2 style={{ color: 'var(--color-text)' }} className="text-xl font-semibold mb-4">Cost Summary</h2>
+      <div className="mb-6">
+        <div style={{ color: 'var(--color-accent)' }} className="text-xl font-bold">
+          Total Cost: {totalCost.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+        </div>
+        <div style={{ color: 'var(--color-primary)' }} className="text-lg">
+          Cost per day: {costPerDay.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+        </div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mb-4 min-w-[350px]">

@@ -108,13 +108,20 @@ function App() {
   // Calculate total days (overnight = 2 days, day stay = 1 day)
   const totalDays = (overnightCount * 2) + dayStayCount
 
-  // Cost per day is simply total cost divided by total days
-  const costPerDay = totalDays > 0 ? totalCost / totalDays : 0
+  // Calculate extra charges for guests over base limit
+  const extraOvernightGuests = Math.max(0, overnightCount - baseGuests)
+  const extraCharges = (extraOvernightGuests * overnightRate) + (dayStayCount * nonOvernightRate)
+
+  // Total cost including extras
+  const totalWithExtras = totalCost + extraCharges
+
+  // Final cost per day including extras
+  const costPerDay = totalDays > 0 ? totalWithExtras / totalDays : 0
 
   // Each person pays based on their days (2 for overnight, 1 for day stay)
   const guestCosts = guests.map(g => costPerDay * (g.overnight ? 2 : 1));
   
-  // Total collected should exactly match the total cost
+  // Total collected should exactly match the total cost with extras
   const totalCollected = guestCosts.reduce((a, b) => a + b, 0);
 
   return (
@@ -146,6 +153,9 @@ function App() {
           guestCosts={guestCosts}
           totalCost={totalCollected}
           costPerDay={costPerDay}
+          baseGuests={baseGuests}
+          extraCharges={extraCharges}
+          totalWithExtras={totalWithExtras}
         />
         <div className="flex justify-center mt-8 mb-4">
           <button
