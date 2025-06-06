@@ -1,4 +1,6 @@
 import React from "react";
+import { GiNightSleep } from "react-icons/gi";
+import { WiDayCloudy } from "react-icons/wi";
 
 const GuestList = ({ guests, addGuest, removeGuest, toggleOvernight, onNameChange }) => {
   return (
@@ -14,18 +16,19 @@ const GuestList = ({ guests, addGuest, removeGuest, toggleOvernight, onNameChang
               onChange={e => onNameChange(guest.id, e.target.value)}
             />
             <span
-              className={"inline-block w-full sm:w-32 text-center px-2 font-semibold"}
+              className={"inline-block w-44 sm:w-44 text-center px-2 font-semibold flex items-center justify-center gap-1 whitespace-nowrap"}
               style={{ color: guest.overnight ? 'var(--color-accent)' : 'var(--color-primary)' }}
             >
-              {guest.overnight ? "Overnight" : "Non-Overnight"}
+              {guest.overnight ? "Sleeping Over" : "Day Stay"}
             </span>
             <div className="flex gap-2 w-full sm:w-auto">
               <button
-                className="px-2 py-1 text-xs rounded border-2 transition-colors w-1/2 sm:w-auto"
+                className="px-2 py-1 text-xs rounded border-2 transition-colors w-1/2 sm:w-auto flex items-center justify-center gap-1"
                 style={{ background: 'var(--color-primary)', color: 'var(--color-background)', borderColor: 'var(--color-secondary)' }}
                 onClick={() => toggleOvernight(guest.id)}
+                aria-label={guest.overnight ? "Switch to Day Stay" : "Switch to Sleeping Over"}
               >
-                Toggle
+                {guest.overnight ? <WiDayCloudy size={18} /> : <GiNightSleep size={16} />}
               </button>
               <button
                 className="px-2 py-1 text-xs rounded border-2 transition-colors w-1/2 sm:w-auto"

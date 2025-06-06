@@ -1,4 +1,6 @@
 import React from "react";
+import { GiNightSleep } from "react-icons/gi";
+import { WiDayCloudy } from "react-icons/wi";
 
 const CostSummary = ({ guests, overnightCost, nonOvernightCost, totalCost }) => {
   return (
@@ -17,7 +19,10 @@ const CostSummary = ({ guests, overnightCost, nonOvernightCost, totalCost }) => 
             {guests.map((guest) => (
               <tr key={guest.id}>
                 <td style={{ color: 'var(--color-text)' }}>{guest.name}</td>
-                <td style={{ color: guest.overnight ? 'var(--color-accent)' : 'var(--color-primary)' }}>{guest.overnight ? "Overnight" : "Non-Overnight"}</td>
+                <td style={{ color: guest.overnight ? 'var(--color-accent)' : 'var(--color-primary)' }}>
+                  {guest.overnight ? <GiNightSleep size={16} style={{ display: 'inline', verticalAlign: 'middle' }} /> : <WiDayCloudy size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />}
+                  {guest.overnight ? ' Sleeping Over' : ' Day Stay'}
+                </td>
                 <td style={{ color: 'var(--color-text)' }}>
                   {guest.overnight ? overnightCost.toLocaleString() : nonOvernightCost.toLocaleString()}
                 </td>
