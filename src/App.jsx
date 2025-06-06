@@ -103,22 +103,19 @@ function App() {
 
   // Calculate costs
   const overnightCount = guests.filter((g) => g.overnight).length
-  const nonOvernightCount = guests.length - overnightCount
+  const dayStayCount = guests.length - overnightCount
 
-  // Calculate base cost per overnight guest
-  // Overnight guests pay 2x non-overnight guests
-  // Let x = non-overnight cost, 2x = overnight cost
-  // total = (overnightCount * 2x) + (nonOvernightCount * x)
-  // x = total / (overnightCount*2 + nonOvernightCount)
-  const denominator = overnightCount * 2 + nonOvernightCount
-  const basePerUnit = denominator > 0 ? totalCost / denominator : 0
-  const overnightCost = Math.round(basePerUnit * 2)
-  const nonOvernightCost = Math.round(basePerUnit)
+  // Calculate total days (overnight = 2 days, day stay = 1 day)
+  const totalDays = (overnightCount * 2) + dayStayCount
 
-  // Add extra charges for additional guests
-  const extraOvernight = Math.max(overnightCount - baseGuests, 0) * overnightRate
-  const extraNonOvernight = nonOvernightCount * nonOvernightRate
-  const totalCollected = overnightCount * overnightCost + nonOvernightCount * nonOvernightCost + extraOvernight + extraNonOvernight
+  // Cost per day is simply total cost divided by total days
+  const costPerDay = totalDays > 0 ? totalCost / totalDays : 0
+
+  // Each person pays based on their days (2 for overnight, 1 for day stay)
+  const guestCosts = guests.map(g => costPerDay * (g.overnight ? 2 : 1));
+  
+  // Total collected should exactly match the total cost
+  const totalCollected = guestCosts.reduce((a, b) => a + b, 0);
 
   return (
     <div style={{ background: 'var(--color-background)', color: 'var(--color-text)' }} className="min-h-screen p-4 mt-8">
@@ -146,9 +143,9 @@ function App() {
         />
         <CostSummary
           guests={guests}
-          overnightCost={overnightCost + (overnightCount > baseGuests ? overnightRate : 0)}
-          nonOvernightCost={nonOvernightCost + nonOvernightRate}
+          guestCosts={guestCosts}
           totalCost={totalCollected}
+          costPerDay={costPerDay}
         />
         <div className="flex justify-center mt-8 mb-4">
           <button
