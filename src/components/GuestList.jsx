@@ -16,10 +16,10 @@ const GuestList = ({ guests, addGuest, removeGuest, toggleOvernight, onNameChang
               onChange={e => onNameChange(guest.id, e.target.value)}
             />
             <span
-              className={"inline-block w-44 sm:w-44 text-center px-2 font-semibold flex items-center justify-center gap-1 whitespace-nowrap"}
+              className={"inline-block w-44 sm:w-44 px-2 font-semibold flex justify-center items-center text-center gap-1 whitespace-nowrap"}
               style={{ color: guest.overnight ? 'var(--color-accent)' : 'var(--color-primary)' }}
             >
-              {guest.overnight ? "Sleeping Over" : "Day Stay"}
+              {guest.overnight ? "Day Stay" : "Sleeping Over" }
             </span>
             <div className="flex gap-2 w-full sm:w-auto">
               <button
