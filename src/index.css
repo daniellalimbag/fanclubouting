@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --color-text: #edf1f5;
+  --color-background: #0c1015;
+  --color-primary: #a2b5cc;
+  --color-secondary: #633b6a;
+  --color-accent: #a86295;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark, [data-theme="dark"] {
+  --color-text: #edf1f5;
+  --color-background: #0c1015;
+  --color-primary: #a2b5cc;
+  --color-secondary: #633b6a;
+  --color-accent: #a86295;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-accent);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--color-secondary);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+button:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--color-secondary);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #0c1015;
+    --color-background: #edf1f5;
+    --color-primary: #a2b5cc;
+    --color-secondary: #633b6a;
+    --color-accent: #a86295;
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+  a:hover {
+    color: var(--color-accent);
+  }
+  button {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+}
