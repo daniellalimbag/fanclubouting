@@ -38,7 +38,6 @@ const CostSummary = ({ guests, guestCosts, totalCost, costPerDay }) => {
           </tbody>
         </table>
       </div>
-      <div style={{ color: 'var(--color-accent)' }} className="font-bold">Total Collected: {totalCost.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}</div>
     </div>
   );
 };
