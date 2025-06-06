@@ -28,7 +28,7 @@ const GuestList = ({ guests, addGuest, removeGuest, toggleOvernight, onNameChang
                 onClick={() => toggleOvernight(guest.id)}
                 aria-label={guest.overnight ? "Switch to Day Stay" : "Switch to Sleeping Over"}
               >
-                {guest.overnight ? <WiDayCloudy size={18} /> : <GiNightSleep size={16} />}
+                {guest.overnight ? <GiNightSleep size={16} /> : <WiDayCloudy size={18} /> }
               </button>
               <button
                 className="px-2 py-1 text-xs rounded border-2 transition-colors w-1/2 sm:w-auto"
